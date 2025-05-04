@@ -44,6 +44,8 @@ application-dev.properties
 flyway.conf
 config/flyway.conf
 !application-local.yml.example
+application.properties
+!application.properties.example
 
 # Файлы окружения
 .env

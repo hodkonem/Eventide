@@ -1,0 +1,61 @@
+# ================================================== #
+#  Product Service Configuration Template            #
+#  !!! Rename to application.properties before use  #
+# ================================================== #
+
+### Server Settings ###
+server.port=${SERVER_PORT:0}  # 0=random, prod: set fixed (8080)
+
+### Kafka Producer ###
+spring.kafka.producer.bootstrap-servers=${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+spring.kafka.producer.key-serializer=org.apache.kafka.common.serialization.StringSerializer
+spring.kafka.producer.value-serializer=org.springframework.kafka.support.serializer.JsonSerializer
+
+# Delivery Guarantees
+spring.kafka.producer.acks=all  # Strongest durability
+spring.kafka.producer.properties.enable.idempotence=true
+spring.kafka.producer.properties.max.in.flight.requests.per.connection=5
+
+# Timeouts (ms)
+spring.kafka.producer.properties.delivery.timeout.ms=20000  # >= linger + request
+spring.kafka.producer.properties.request.timeout.ms=5000
+spring.kafka.producer.properties.linger.ms=100  # Small batching
+
+### Kafka Consumer (uncomment if needed) ###
+# spring.kafka.consumer.bootstrap-servers=${KAFKA_BOOTSTRAP_SERVERS}
+# spring.kafka.consumer.group-id=${KAFKA_CONSUMER_GROUP:product-service-group}
+# spring.kafka.consumer.auto-offset-reset=latest
+# spring.kafka.consumer.properties.session.timeout.ms=45000
+
+### Security ###
+# Uncomment for production security:
+# spring.kafka.properties.security.protocol=SASL_SSL
+# spring.kafka.properties.sasl.mechanism=SCRAM-SHA-512
+# spring.kafka.properties.sasl.jaas.config=org.apache.kafka.common.security.scram.ScramLoginModule required \
+#   username="${KAFKA_USER:admin}" \
+#   password="${KAFKA_PASSWORD:changeme}";
+
+### Observability ###
+management.endpoints.web.exposure.include=health,metrics,info
+management.endpoint.health.probes.enabled=true
+management.metrics.tags.application=product-service
+
+### Topic Configuration ###
+product.topics.events=product-events-${ENV:dev}
+product.topics.partitions=${TOPIC_PARTITIONS:3}
+product.topics.replicas=${TOPIC_REPLICAS:2}
+product.topics.min.insync.replicas=${MIN_INSYNC_REPLICAS:2}
+
+### Database (PostgreSQL example) ###
+# spring.datasource.url=jdbc:postgresql://${DB_HOST:localhost}:5432/product_${ENV:dev}
+# spring.datasource.username=${DB_USER:postgres}
+# spring.datasource.password=${DB_PASSWORD:postgres}
+# spring.datasource.hikari.maximum-pool-size=10
+
+### Retry & Circuit Breaker ###
+resilience4j.retry.instances.product-service.max-attempts=3
+resilience4j.retry.instances.product-service.wait-duration=500ms
+
+### Swagger (optional) ###
+# springdoc.api-docs.path=/api-docs
+# springdoc.swagger-ui.path=/swagger-ui
