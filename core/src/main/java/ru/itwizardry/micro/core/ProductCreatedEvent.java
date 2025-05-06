@@ -1,4 +1,4 @@
-package ru.itwizardry.micro.product.service.event;
+package ru.itwizardry.micro.core;
 
 import java.math.BigDecimal;
 

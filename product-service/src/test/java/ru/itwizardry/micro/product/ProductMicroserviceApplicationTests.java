@@ -1,4 +1,4 @@
-package ru.itwizardry.ProductMicroservice;
+package ru.itwizardry.micro.product;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
