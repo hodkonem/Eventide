@@ -28,7 +28,7 @@ public class ProductCreatedEventHandler {
 
     @KafkaHandler
     public void handle(ProductCreatedEvent productCreatedEvent) {
-        logger.info("Received event: {}", productCreatedEvent.getTitle());
+        logger.info("Received event: {}, productId: {}", productCreatedEvent.getTitle(), productCreatedEvent.getProductId());
 
         String url = "http://localhost:8090/response/200";
         try {
