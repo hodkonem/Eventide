@@ -12,6 +12,7 @@
     <modules>
         <module>product-service</module>
         <module>email-notification-service</module>
+        <module>mock-service</module>
     </modules>
 
     <properties>

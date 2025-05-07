@@ -8,7 +8,14 @@
         <option value="$PROJECT_DIR$/../ProductMicroservice/pom.xml" />
         <option value="$PROJECT_DIR$/email-notification-service/pom.xml" />
         <option value="$PROJECT_DIR$/core/pom.xml" />
+        <option value="$PROJECT_DIR$/email-notification-service/src/mock-service/pom.xml" />
+        <option value="$PROJECT_DIR$/mock-service/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/email-notification-service/src/mock-service/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="liberica-17" project-jdk-type="JavaSDK">
